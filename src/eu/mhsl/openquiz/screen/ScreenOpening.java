@@ -1,11 +1,8 @@
 package eu.mhsl.openquiz.screen;
 
-import com.diogonunes.jcolor.Ansi;
 import eu.mhsl.openquiz.Main;
 
 import java.util.TreeMap;
-
-import static com.diogonunes.jcolor.Attribute.*;
 
 public class ScreenOpening implements Screen {
     public TreeMap<Integer, String> items = new TreeMap<>();

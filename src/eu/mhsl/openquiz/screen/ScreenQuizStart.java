@@ -5,9 +5,6 @@ import com.diogonunes.jcolor.Attribute;
 import eu.mhsl.openquiz.Main;
 import eu.mhsl.openquiz.question.QuestionSet;
 
-import java.io.File;
-import java.util.TreeMap;
-
 public class ScreenQuizStart implements Screen {
     private QuestionSet quiz;
 
