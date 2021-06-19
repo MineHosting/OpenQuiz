@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OpenQuiz:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OpenQuiz_jar</output-path>
+    <root id="archive" name="OpenQuiz.jar">
+      <element id="module-output" name="OpenQuiz" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/JColor.jar" path-in-jar="/" />
+      <element id="library" level="project" name="JColor" />
+    </root>
+  </artifact>
+</component>
