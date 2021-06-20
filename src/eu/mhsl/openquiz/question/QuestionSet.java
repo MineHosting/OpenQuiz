@@ -37,6 +37,9 @@ public class QuestionSet {
         questions.add(new Question("Testfrage", "Beantworte die Frage", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 1, QuestionDifficulty.EASY));
         questions.add(new Question("Testfrage2", "Beantworte die Frage2", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 0, QuestionDifficulty.EASY));
         questions.add(new Question("Testfrage3", "Beantworte die Frage3", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 3, QuestionDifficulty.EASY));
+        questions.add(new Question("Testfrage", "Beantworte die Frage", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 1, QuestionDifficulty.EASY));
+        questions.add(new Question("Testfrage2", "Beantworte die Frage2", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 0, QuestionDifficulty.EASY));
+        questions.add(new Question("Testfrage3", "Beantworte die Frage3", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 3, QuestionDifficulty.EASY));
 
 
         this.length = questions.size();

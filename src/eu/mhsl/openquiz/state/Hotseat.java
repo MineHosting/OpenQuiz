@@ -9,7 +9,7 @@ import java.util.TreeMap;
 /**
  * Hotseat is an representation of the Game procedure itself.
  * It manages different Players and when what player has to answer a question.
- * The procedure is customizable by the constructor parameters
+ * The procedure is once generated in the constructor.
  */
 public class Hotseat {
     protected int playercount;
@@ -35,11 +35,17 @@ public class Hotseat {
         //generate dataset
         this.questions.beforeFirst();
 
-         for(int quest = 0; quest <= this.questions.length; quest++) {
-             Logger.info("Question:"+quest);
-         }
+        //brainfuck
+        outer:
+        for(int loops = 1; true; loops++) {
+            for(int players = 0; players < this.playercount; players++) {
+                for(int quests = 0; quests < this.questioncount; quests++) {
+                    if(loops+quests+(loops-1) > this.questions.length) break outer;
+                    Logger.info("Loops/players/quests:"+loops + " " + players+ " " + (loops+quests+(loops-1)));
+                }
+            }
+        }
+
 
     }
-
-
 }
