@@ -1,5 +1,7 @@
 package eu.mhsl.openquiz.screen;
 
+import com.diogonunes.jcolor.Ansi;
+import com.diogonunes.jcolor.Attribute;
 import eu.mhsl.openquiz.Main;
 import eu.mhsl.openquiz.question.QuestionSet;
 
@@ -8,7 +10,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeMap;
 
-
+/**
+ * Implements the Quiz-Selection menu
+ */
 public class ScreenQuizList implements Screen {
     public TreeMap<Integer, String> items = new TreeMap<>();
     private TreeMap<Integer, File> filemap = new TreeMap<>();
@@ -18,7 +22,7 @@ public class ScreenQuizList implements Screen {
 
         File storage = new File(System.getProperty("user.dir") + File.separator + "data");
         File[] files = storage.listFiles();
-        Arrays.sort(files, Comparator.comparingLong(File::lastModified));       //sort files by creation Date
+        if(files != null) Arrays.sort(files, Comparator.comparingLong(File::lastModified));       //sort files by creation Date
 
         int c = 1;
         for(File file : files) {
@@ -29,7 +33,7 @@ public class ScreenQuizList implements Screen {
             this.filemap.put(c, file);
 
             String quizName = file.getName().split(".openquiz")[0];
-            items.put(++c, quizName);
+            items.put(++c, Ansi.colorize(quizName, Attribute.BRIGHT_CYAN_TEXT()));
         }
     }
     public Screen display() {

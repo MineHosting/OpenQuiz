@@ -9,11 +9,11 @@ public class Question {
 
     /**
      * Constructor for an Question
-     * @param title
+     * @param title Displayed Question-title
      * @param quest the body of the Question
      * @param answers an Array of possible answers
      * @param correct the correct Answer as the Index of the answers parameter
-     * @param difficulty
+     * @param difficulty Enum describing the Questiondifficulty
      */
     public Question(String title, String quest, String[] answers, int correct, QuestionDifficulty difficulty) {
         this.title = title;
@@ -23,6 +23,7 @@ public class Question {
         this.difficulty = difficulty;
     }
 
+    //self explaining get/setters
     public String getTitle() {
         return this.title;
     }

@@ -4,6 +4,9 @@ import eu.mhsl.openquiz.Main;
 
 import java.util.TreeMap;
 
+/**
+ * Implements the Main or Home-Screen
+ */
 public class ScreenOpening implements Screen {
     public TreeMap<Integer, String> items = new TreeMap<>();
     public ScreenOpening() {

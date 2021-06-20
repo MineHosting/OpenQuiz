@@ -15,15 +15,26 @@ import java.util.TreeMap;
 public class Terminal {
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Print a single free line
+     */
     private static void free() {
         Terminal.free(1);
     }
+
+    /**
+     * Print an specific amount of free lines
+     * @param lines amount
+     */
     private static void free(int lines) {
         for(int i = 1; i <= lines; i++) {
             System.out.println();
         }
     }
 
+    /**
+     * Clear the Console-Screen (at least try it)
+     */
     public void clearScreen() {
         String os = System.getProperty("os.name");
         if (os.contains("Windows")) Logger.warn("Be sure to activate ANSI in your Console to get proper ClearScreen on Windows OS");
@@ -33,13 +44,12 @@ public class Terminal {
         System.out.flush();
     }
 
-    public void printScreen(Screen s) {
-        s.display();
-    }
-
-    public int choice(TreeMap<Integer, String> items) {
-        return this.choice("", items);
-    }
+    /**
+     * Prints an choice based on the given TreeMap and returns the key-value of selected
+     * @param question Question to display
+     * @param map map of possible Answers
+     * @return key-value of selected map entry
+     */
     public int choice(String question, TreeMap<Integer, String> map) {
         clearScreen();
         int answer = 0;
@@ -63,12 +73,17 @@ public class Terminal {
         return selected;
     }
 
-    public void anyKey() {
-        System.out.println("Drücke eine belibige Taste...");
-        try {
-            System.in.read();
-        }
-        catch(Exception e) {} //hmm
+    /**
+     * Simple Terminal yes/no choice
+     * @param question displayed question
+     * @return yes equals true
+     */
+    public boolean bool(String question) {
+        free();
+        System.out.println(question);
+        System.out.print("[y/N] : ");
+        char selected = scanner.next().toLowerCase().toCharArray()[0];
+        return selected == 'y';
     }
 
 }

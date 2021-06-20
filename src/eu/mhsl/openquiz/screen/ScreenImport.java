@@ -4,6 +4,9 @@ import eu.mhsl.openquiz.Main;
 
 import java.util.TreeMap;
 
+/**
+ * Implements the Import-Option menu
+ */
 public class ScreenImport implements Screen {
     public TreeMap<Integer, String> items = new TreeMap<>();
     public ScreenImport() {

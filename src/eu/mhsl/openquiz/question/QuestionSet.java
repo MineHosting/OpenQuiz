@@ -2,6 +2,8 @@ package eu.mhsl.openquiz.question;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class QuestionSet {
     private int pointer = 0;
@@ -11,9 +13,11 @@ public class QuestionSet {
     private String description;
     private QuestionDifficulty difficulty;
 
+    public int length;
+
     /**
      * Construct an QuestionList from an ArrayList
-     * @param quests
+     * @param quests Arraylist of predefined questions
      */
     public QuestionSet(ArrayList<Question> quests) {
         this.questions = quests;
@@ -34,6 +38,8 @@ public class QuestionSet {
         questions.add(new Question("Testfrage2", "Beantworte die Frage2", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 0, QuestionDifficulty.EASY));
         questions.add(new Question("Testfrage3", "Beantworte die Frage3", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 3, QuestionDifficulty.EASY));
 
+
+        this.length = questions.size();
     }
 
     /**
@@ -42,7 +48,7 @@ public class QuestionSet {
      */
     public Boolean next() {
         this.pointer++;
-        if(this.getCurrent() != null) return true; else return false;
+        return this.getCurrent() != null;
     }
 
     /**
@@ -53,12 +59,28 @@ public class QuestionSet {
     }
 
     /**
+     * Move the internal Pointer to an specific offset. Negative numbers for back
+     * @param offset integer offset
+     */
+    public void moveCurrent(int offset) {
+        this.pointer += offset;
+    }
+
+    /**
      * Get the current Item from current Pointer position
-     * @return
+     * @return returns Question the pointer is viewing
      */
     public Question getCurrent() {
         return this.questions.get(this.pointer);
     }
+
+    /**
+     * Shuffle the Questions in the set
+     */
+    public void randomize() {
+        Collections.shuffle(this.questions, new Random());
+    }
+
 
     //further self explaining getters
     public String getTitle() {
@@ -70,5 +92,6 @@ public class QuestionSet {
     public QuestionDifficulty getDifficulty() {
         return this.difficulty;
     }
+
 
 }
