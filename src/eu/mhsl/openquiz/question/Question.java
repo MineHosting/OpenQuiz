@@ -1,11 +1,11 @@
 package eu.mhsl.openquiz.question;
 
 public class Question {
-    private QuestionDifficulty difficulty;
-    private String title;
-    private String question;
-    private String[] answers;
-    private int correct;
+    private final QuestionDifficulty difficulty;
+    private final String title;
+    private final String question;
+    private final String[] answers;
+    private final int correct;
 
     /**
      * Constructor for an Question

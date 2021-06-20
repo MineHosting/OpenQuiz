@@ -8,8 +8,8 @@ import eu.mhsl.openquiz.state.Hotseat;
  * Implements one specific quiz-Question
  */
 public class ScreenQuizQuestion implements Screen {
-    private QuestionSet questions;
-    private Hotseat hotseat;
+    private final QuestionSet questions;
+    private final Hotseat hotseat;
 
     public ScreenQuizQuestion(QuestionSet questions, Hotseat hotseat) {
         this.questions = questions;

@@ -10,7 +10,7 @@ import eu.mhsl.openquiz.state.Hotseat;
  * Implements the Quiz-Config and Start screen
  */
 public class ScreenQuizStart implements Screen {
-    private QuestionSet quiz;
+    private final QuestionSet quiz;
 
     public ScreenQuizStart(QuestionSet quiz) {
         this.quiz = quiz;

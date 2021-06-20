@@ -16,8 +16,8 @@ public class Hotseat {
     protected int questioncount;
     protected QuestionSet questions;
 
-    private int pointer = 0;
-    private TreeMap<Integer, Question> playset = new TreeMap<>();
+    private final int pointer = 0;
+    private final TreeMap<Integer, Question> playset = new TreeMap<>();
 
     /**
      * Create an Game-Procedure managing different Players and Questions

@@ -15,7 +15,7 @@ import java.util.TreeMap;
  */
 public class ScreenQuizList implements Screen {
     public TreeMap<Integer, String> items = new TreeMap<>();
-    private TreeMap<Integer, File> filemap = new TreeMap<>();
+    private final TreeMap<Integer, File> filemap = new TreeMap<>();
 
     public ScreenQuizList() {
         items.put(1, "Zurück");

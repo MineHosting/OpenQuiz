@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Terminal {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Print a single free line
