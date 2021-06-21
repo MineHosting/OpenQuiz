@@ -19,10 +19,13 @@ public class ScreenQuizStart implements Screen {
     public Screen display() {
         Main.getTerminal().clearScreen();
         System.out.println("Name: " + Ansi.colorize(this.quiz.getTitle(), Attribute.BRIGHT_CYAN_TEXT()));
+        System.out.println("Beschreibung: " + Ansi.colorize(this.quiz.getDescription(), Attribute.BRIGHT_CYAN_TEXT()));
         System.out.println("Level: " + Ansi.colorize(this.quiz.getDifficulty().toString(), Attribute.CYAN_TEXT()));
 
         if(Main.getTerminal().bool("Möchtest du das Quiz starten?")) {
-            return new ScreenQuizQuestion(quiz, new Hotseat(2, 1, quiz));
+            Hotseat playset = new Hotseat(1, 1, quiz);
+            playset.beforeFirst();
+            return new ScreenQuizQuestion(playset.next());
         } else {
             return new ScreenQuizList();
         }

@@ -1,7 +1,6 @@
 package eu.mhsl.openquiz.question;
 
 public class Question {
-    private final QuestionDifficulty difficulty;
     private final String title;
     private final String question;
     private final String[] answers;
@@ -13,14 +12,12 @@ public class Question {
      * @param quest the body of the Question
      * @param answers an Array of possible answers
      * @param correct the correct Answer as the Index of the answers parameter
-     * @param difficulty Enum describing the Questiondifficulty
      */
-    public Question(String title, String quest, String[] answers, int correct, QuestionDifficulty difficulty) {
+    public Question(String title, String quest, String[] answers, int correct) {
         this.title = title;
         this.question = quest;
         this.answers = answers;
         this.correct = correct;
-        this.difficulty = difficulty;
     }
 
     //self explaining get/setters
@@ -35,8 +32,5 @@ public class Question {
     }
     public int getSolution() {
         return this.correct;
-    }
-    public QuestionDifficulty getDifficulty() {
-        return this.difficulty;
     }
 }

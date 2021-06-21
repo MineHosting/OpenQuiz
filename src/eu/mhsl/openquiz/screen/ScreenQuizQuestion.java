@@ -1,23 +1,22 @@
 package eu.mhsl.openquiz.screen;
 
-import eu.mhsl.openquiz.out.Logger;
-import eu.mhsl.openquiz.question.QuestionSet;
 import eu.mhsl.openquiz.state.Hotseat;
 
 /**
  * Implements one specific quiz-Question
  */
 public class ScreenQuizQuestion implements Screen {
-    private final QuestionSet questions;
     private final Hotseat hotseat;
 
-    public ScreenQuizQuestion(QuestionSet questions, Hotseat hotseat) {
-        this.questions = questions;
+    public ScreenQuizQuestion(Hotseat hotseat) {
         this.hotseat = hotseat;
     }
 
     public Screen display() {
-        Logger.warn("Finished exec");
-        return null;
+        System.out.println(hotseat.get().toString());
+
+        Hotseat next = hotseat.next();
+        if(next.get() == null) return null;
+        return new ScreenQuizQuestion(next);
     }
 }
