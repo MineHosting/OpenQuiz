@@ -36,16 +36,31 @@ public class Hotseat {
         this.questions.beforeFirst();
 
         //brainfuck
-        outer:
-        for(int loops = 1; true; loops++) {
-            for(int players = 0; players < this.playercount; players++) {
-                for(int quests = 0; quests < this.questioncount; quests++) {
-                    if(loops+quests+(loops-1) > this.questions.length) break outer;
-                    Logger.info("Loops/players/quests:"+loops + " " + players+ " " + (loops+quests+(loops-1)));
+        int questindex;
+        if(playercount > 1 && questioncount > 1) {
+            outer:
+            for(int loops = 1; true; loops++) {
+                for(int players = 0; players < this.playercount; players++) {
+                    for(int quests = 0; quests < this.questioncount; quests++) {
+                        if(loops+quests+(loops-1) > this.questions.length) break outer;
+                        questindex = (loops+quests+(loops-1));
+                        Logger.info("Player/Quest:" + players + " " + questindex);
+                    }
                 }
             }
+        } else if(playercount > 1 && questioncount == 1) {
+            for(int quests = 0; quests < this.questions.length; quests++) {
+                for(int players = 0; players < this.playercount; players++) {
+                    questindex = quests+1;
+                    Logger.info("Player/Quest:" + players + " " + questindex);
+                }
+            }
+        } else if(playercount == 1) {
+            for(int quests = 0; quests < this.questions.length; quests++) {
+                questindex = quests+1;
+                Logger.info("Player/Quest:0 " + questindex);
+            }
         }
-
 
     }
 }

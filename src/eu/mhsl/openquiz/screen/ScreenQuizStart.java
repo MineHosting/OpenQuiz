@@ -22,7 +22,7 @@ public class ScreenQuizStart implements Screen {
         System.out.println("Level: " + Ansi.colorize(this.quiz.getDifficulty().toString(), Attribute.CYAN_TEXT()));
 
         if(Main.getTerminal().bool("Möchtest du das Quiz starten?")) {
-            return new ScreenQuizQuestion(quiz, new Hotseat(4, 2, quiz));
+            return new ScreenQuizQuestion(quiz, new Hotseat(2, 1, quiz));
         } else {
             return new ScreenQuizList();
         }
