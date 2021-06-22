@@ -29,17 +29,12 @@ public class QuestionSet {
     public QuestionSet(File file) {
         //TODO: create Questionlist from File
 
-        this.title = "Testquiz";
-        this.description = "Das ist ein kurzes Testquiz";
+        this.title = "Betriebsysteme";
+        this.description = "Wie kennst du dich in der Welt der Betriebsysteme aus?";
         this.difficulty = QuizDifficulty.EASY;
 
-        questions.add(new Question("Testfrage", "Beantworte die Frage", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 1));
-        questions.add(new Question("Testfrage2", "Beantworte die Frage2", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 0));
-        questions.add(new Question("Testfrage3", "Beantworte die Frage3", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 3));
-        questions.add(new Question("Testfrage", "Beantworte die Frage", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 1));
-        questions.add(new Question("Testfrage2", "Beantworte die Frage2", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 0));
-        questions.add(new Question("Testfrage3", "Beantworte die Frage3", new String[] {"Antwort1", "Antwort2", "Antwort3"}, 3));
-
+        questions.add(new Question("Windows", "Wer hat Windows erfunden?", new String[] {"Linus Torvalds", "Bill Gates", "Henry Mickenbecker"}, 1));
+        questions.add(new Question("Linux", "Wer hat Linux erfunden", new String[] {"Bill Gates", "David Maul", "Linux Torvalds"}, 2));
 
         this.length = questions.size();
     }

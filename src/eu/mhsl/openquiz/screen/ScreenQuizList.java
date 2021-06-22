@@ -37,12 +37,12 @@ public class ScreenQuizList implements Screen {
         }
     }
     public Screen display() {
-        int command = Main.getTerminal().choice("OpenQuiz", items);
+        int command = Main.getTerminal().choice("Wähle ein Quiz", items);
         switch (command) {
             case 1:
                 return new ScreenOpening();
             default:
-                if(!filemap.containsKey(command)) break;
+                if(!filemap.containsKey(command-1)) break;
                 return new ScreenQuizStart(new QuestionSet(filemap.get(command)));
         }
 

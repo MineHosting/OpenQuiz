@@ -5,6 +5,7 @@ import eu.mhsl.openquiz.question.Question;
 import eu.mhsl.openquiz.question.QuestionSet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -19,6 +20,7 @@ public class Hotseat {
 
     private int pointer = 0;
     private final TreeMap<Integer, TreeMap<Integer, Question>> playset = new TreeMap<>();
+    private HashMap<Integer, Integer> playerpoints = new HashMap<>();
 
     /**
      * Create an Game-Procedure managing different Players and Questions
@@ -32,10 +34,17 @@ public class Hotseat {
         this.questioncount = questioncount;
         this.questions = questions;
 
+        //set points for every player to 0
+        for(int i = 0; i < this.playercount; i++) {
+            this.playerpoints.put(i, 0);
+        }
+
+        //generate playmap
         //brainfuck
         int questindex;
         int runindex = 0;
         if(playercount > 1 && questioncount > 1) {
+            //multiplayer, multiquestion
             outer:
             for(int loops = 1; true; loops++) {
                 for(int players = 0; players < this.playercount; players++) {
@@ -49,6 +58,7 @@ public class Hotseat {
                 }
             }
         } else if(playercount > 1 && questioncount == 1) {
+            //multiplayer but singlequestion
             for(int quests = 0; quests < this.questions.length; quests++) {
                 for(int players = 0; players < this.playercount; players++) {
                     questindex = quests+1;
@@ -57,6 +67,7 @@ public class Hotseat {
                 }
             }
         } else if(playercount == 1) {
+            //singleplayer
             for(int quests = 0; quests < this.questions.length; quests++) {
                 questindex = quests+1;
                 runindex++;
@@ -68,22 +79,87 @@ public class Hotseat {
         Logger.warn(playset.toString());
     }
 
+    /**
+     * Set Pointer before the first Element
+     */
     public void beforeFirst() {
         this.pointer = 0;
     }
+
+    /**
+     * move Pointer to the next position
+     * @return the 'new' Hotseat element with the new Position
+     */
     public Hotseat next() {
         this.pointer++;
         return this;
     }
+
+    /**
+     * Get the Map from the current pointer
+     * @return the Map containing the current Player and the Question
+     */
     public TreeMap get() {
-        Logger.info("Accessing: " + this.pointer);
         return this.playset.get(this.pointer);
     }
 
+    /**
+     * Get the current Question
+     * @return Question
+     */
+    public Question getQuestion() {
+        return (Question) this.playset.get(this.pointer).values().toArray(new Question[0])[0];
+    }
+
+    /**
+     * Get the current Player
+     * @return player number
+     */
+    public int getPlayer() {
+        return (int) this.playset.get(this.pointer).keySet().toArray(new Integer[0])[0];
+    }
+
+    /**
+     * Add an Point to the current Player
+     */
+    public void addPoint() {
+        this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()).intValue() + 1);
+    }
+
+    /**
+     * Remove an Point from te current Player
+     */
+    public void removePoint() {
+        this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()).intValue() - 1);
+    }
+
+    /**
+     * Get all Points
+     * @return Map with the Playerindex and his points
+     */
+    public HashMap<Integer, Integer> getPoints() {
+        return this.playerpoints;
+    }
+
+    /**
+     * Add internally an Playset to the Array
+     * @param index index of Playaction
+     * @param player player id
+     * @param quest the Question to answer
+     */
     private void setPlayset(int index, int player, Question quest) {
         TreeMap<Integer, Question> playerQuest = new TreeMap<>();
         playerQuest.put(player, quest);
 
         this.playset.put(index, playerQuest);
     }
+
+    /**
+     * get the Amount of configured Players
+     * @return amount of players
+     */
+    public int getPlayercount() {
+        return this.playercount;
+    }
+
 }

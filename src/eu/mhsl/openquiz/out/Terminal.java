@@ -2,15 +2,13 @@ package eu.mhsl.openquiz.out;
 
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
+import eu.mhsl.openquiz.question.Question;
 import eu.mhsl.openquiz.screen.Screen;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Terminal {
     private final Scanner scanner = new Scanner(System.in);
@@ -45,22 +43,33 @@ public class Terminal {
     }
 
     /**
+     * Helper for choice
+     * @param question
+     * @param map
+     * @return
+     */
+    public int choice(String question, TreeMap<Integer, String> map) {
+        return this.choice(question, map, false);
+    }
+
+    /**
      * Prints an choice based on the given TreeMap and returns the key-value of selected
      * @param question Question to display
      * @param map map of possible Answers
+     * @param noClear on true disables previous clearscreen
      * @return key-value of selected map entry
      */
-    public int choice(String question, TreeMap<Integer, String> map) {
-        clearScreen();
+    public int choice(String question, TreeMap<Integer, String> map, boolean noClear) {
+        if(!noClear) clearScreen();
         int answer = 0;
         int selected;
-
+        free();
         System.out.println(Ansi.colorize(question, Attribute.BRIGHT_RED_TEXT()));
-
+        free();
         for(int index : map.keySet().toArray(new Integer[map.size()])) {
             System.out.println(Ansi.colorize("" + index, Attribute.BOLD()) + " - " + map.get(index));
         }
-
+        free();
         do {
             System.out.print(Ansi.colorize("Auswahl ", Attribute.CYAN_TEXT()) + Ansi.colorize(": ", Attribute.BOLD()));
             try {
@@ -84,6 +93,46 @@ public class Terminal {
         System.out.print("[y/N] : ");
         char selected = scanner.next().toLowerCase().toCharArray()[0];
         return selected == 'y';
+    }
+
+    /**
+     * Asks user for an Number-input
+     * @param question displayed question
+     * @param prefered an standart-input if nothing is providet
+     * @return the given number
+     */
+    public int number(String question, int prefered) {
+        scanner.nextLine();
+        free();
+        System.out.println(question);
+        System.out.print("[" + prefered + "]: ");
+        String input = scanner.nextLine();
+        if(input.equals("")) {
+            return prefered;
+        }
+        return Integer.parseInt(input);
+    }
+
+    /**
+     * Asks for the Answer of an Quiz-Obj.
+     * @param quest the Question
+     * @param index the Question number in the full quiz
+     * @param player the Player who should answer
+     * @return true if the Question was answered correctly
+     */
+    public boolean quizQuestion(Question quest, int index, int player) {
+        clearScreen();
+        TreeMap<Integer, String> items = new TreeMap<>();
+        System.out.println(Ansi.colorize("Spieler: " + player + " Frage: " + index, Attribute.BOLD()));
+
+        int count = 0;
+        for(String answer : quest.getAnswers()) {
+            count++;
+            items.put(count, answer);
+        }
+        int answer = this.choice(quest.getQuestion(), items, true);
+
+        return answer != quest.getSolution();
     }
 
 }
