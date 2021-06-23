@@ -30,17 +30,19 @@ public class ScreenQuizStart implements Screen {
         if(terminal.bool("Fragen durchmischen?")) quiz.randomize();
 
         int questioncount = 0;
-        int playercount = terminal.number("Wie viele Spieler spielen das Spiel?", 1);
+        int playercount = terminal.number("Wie viele Spieler spielen das Spiel?");
 
         if(playercount > 1) {
-            questioncount = terminal.number("Wie viele Fragen pro Fragenblock per Spieler?", 2);
+            questioncount = terminal.number("Wie viele Fragen pro Fragenblock per Spieler?");
         }
 
-        Hotseat playset = new Hotseat(playercount, questioncount, quiz);
-        Logger.info("Spielablauf erfolgreich berechnet!");
-
+        try {
+            Hotseat playset = new Hotseat(playercount, questioncount, quiz);
             playset.beforeFirst();
-        return new ScreenQuizQuestion(playset.next());
-
+            return new ScreenQuizQuestion(playset.next());
+        } catch(Exception e) {
+            Logger.error("Fehler beim erstellen des Playsets: " + e.getMessage());
+            return new ScreenQuizList();
+        }
     }
 }

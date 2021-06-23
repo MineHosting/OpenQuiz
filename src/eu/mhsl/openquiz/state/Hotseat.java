@@ -1,6 +1,5 @@
 package eu.mhsl.openquiz.state;
 
-import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.question.Question;
 import eu.mhsl.openquiz.question.QuestionSet;
 
@@ -28,7 +27,7 @@ public class Hotseat {
      *                      So you don't have to switch every Question
      * @param questions Questionset of target questions
      */
-    public Hotseat(int playercount, int questioncount, QuestionSet questions) {
+    public Hotseat(int playercount, int questioncount, QuestionSet questions) throws Exception {
         this.playercount = playercount;
         this.questioncount = questioncount;
         this.questions = questions;
@@ -37,6 +36,7 @@ public class Hotseat {
         for(int i = 0; i < this.playercount; i++) {
             this.playerpoints.put(i, 0);
         }
+
 
         //generate playmap
         //brainfuck
@@ -75,7 +75,6 @@ public class Hotseat {
 
         }
 
-        Logger.warn(playset.toString());
     }
 
     /**
@@ -130,7 +129,6 @@ public class Hotseat {
      * Add an Point to the current Player
      */
     public void addPoint() {
-        Logger.info(this.playerpoints.toString());
         this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()) + 1);
     }
 

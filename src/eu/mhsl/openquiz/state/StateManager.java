@@ -1,13 +1,17 @@
 package eu.mhsl.openquiz.state;
 
+
+import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.screen.Screen;
 
 public class StateManager {
-    private Screen screen;
-
     public void setScreen(Screen s) {
-        this.screen = s;
-        Screen next = s.display();
-        if(next != null) setScreen(next);
+        try {
+            Screen next = s.display();
+            if(next != null) setScreen(next);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Logger.error("Es ist ein fehler in OpenQuiz aufgetreten: " + e.getMessage());
+        }
     }
 }

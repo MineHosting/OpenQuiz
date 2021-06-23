@@ -68,7 +68,7 @@ public class Terminal {
         }
         free();
         do {
-            System.out.print(Ansi.colorize("Auswahl ", Attribute.CYAN_TEXT()) + Ansi.colorize(": ", Attribute.BOLD()));
+            System.out.print(Ansi.colorize("Auswahl ", Attribute.CYAN_TEXT()) + Ansi.colorize("> ", Attribute.BOLD()));
             try {
                 selected = Integer.parseInt(scanner.next());
             } catch(NumberFormatException e) {
@@ -87,7 +87,7 @@ public class Terminal {
     public boolean bool(String question) {
         free();
         System.out.println(question);
-        System.out.print("[y/N] : ");
+        System.out.print("[y/N] > ");
         char selected = scanner.next().toLowerCase().toCharArray()[0];
         return selected == 'y';
     }
@@ -95,35 +95,31 @@ public class Terminal {
     /**
      * Asks user for an Number-input
      * @param question displayed question
-     * @param prefered an standart-input if nothing is providet
      * @return the given number
      */
-    public int number(String question, int prefered) {
+    public int number(String question) {
         free();
         System.out.println(question);
-        System.out.print("[" + prefered + "]: ");
-        String input = scanner.next();
-        if(input.equals("")) {
-            return prefered;
+        System.out.print("> ");
+
+        try {
+            return Integer.parseInt(scanner.next());
+        } catch(Exception e) {
+            return 0;
         }
-        return Integer.parseInt(input);
+
     }
 
     /**
      * Asks user for an String-input
      * @param question displayed question
-     * @param prefered prefered standart input
      * @return the given text
      */
-    public String text(String question, String prefered) {
+    public String text(String question) {
         free();
         System.out.println(question);
-        System.out.print("[" + prefered + "]: ");
-        String input = scanner.next();
-        if(input.equals("")) {
-            return prefered;
-        }
-        return input;
+        System.out.print("> ");
+        return scanner.next();
     }
 
     /**
@@ -134,7 +130,7 @@ public class Terminal {
      * @return true if the Question was answered correctly
      */
     public boolean quizQuestion(Question quest, int index, int player) {
-        //clearScreen();
+        clearScreen();
         TreeMap<Integer, String> items = new TreeMap<>();
         System.out.println(Ansi.colorize("Spieler: " + player + " Frage: " + index, Attribute.BOLD()));
 
@@ -148,6 +144,10 @@ public class Terminal {
         return answer == (quest.getSolution()+1);
     }
 
+    /**
+     * Waits for Users feedback as an Enter keypress
+     * @param message the message to display
+     */
     public void pauseEnter(String message) {
         System.out.println(Ansi.colorize(message, Attribute.GREEN_TEXT()));
         System.out.println("Drücke [Enter] um fortzufahren...");

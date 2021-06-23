@@ -26,8 +26,8 @@ public class FileHandler {
 
     public void importHTTP() {
         Terminal t = OpenQuiz.getTerminal();
-        String url = t.text("Link: ", "");
-        String name = t.text("Speichern als: ", "Quizname");
+        String url = t.text("Link: ");
+        String name = t.text("Speichern als: ");
         try {
 
             /**
@@ -49,8 +49,8 @@ public class FileHandler {
 
     public void importFile() {
         Terminal t = OpenQuiz.getTerminal();
-        String path = t.text("File: ", "Absolut");
-        String name = t.text("Speichern als: ", "Quizname");
+        String path = t.text("File: ");
+        String name = t.text("Speichern als: ");
         try {
             Files.copy(Paths.get(path), Paths.get(this.storage.getAbsolutePath() + File.separator + name + ".openquiz"), StandardCopyOption.REPLACE_EXISTING);
             t.pauseEnter("Datei erfolgreich importiert");
