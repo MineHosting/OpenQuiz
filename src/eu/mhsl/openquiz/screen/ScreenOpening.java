@@ -1,6 +1,7 @@
 package eu.mhsl.openquiz.screen;
 
 import eu.mhsl.openquiz.OpenQuiz;
+import eu.mhsl.openquiz.out.Logger;
 
 import java.util.TreeMap;
 
@@ -22,8 +23,14 @@ public class ScreenOpening implements Screen {
         switch (command) {
             case 1:
                 return new ScreenQuizList();
+            case 2:
+                return new ScreenQuizCreator();
             case 3:
                 return new ScreenImport();
+            case 4:
+                return null;
+            case 5:
+                Logger.info("Thanks for Playing <3");
             default:
                 return null;
         }

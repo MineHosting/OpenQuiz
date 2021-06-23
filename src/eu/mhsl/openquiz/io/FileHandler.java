@@ -24,14 +24,6 @@ public class FileHandler {
         return storage.listFiles();
     }
 
-    public void importServer() {
-        Terminal t = OpenQuiz.getTerminal();
-        t.text("Serverip: ", "127.0.0.1");
-        t.number("Serverport: ", 8099);
-
-
-    }
-
     public void importHTTP() {
         Terminal t = OpenQuiz.getTerminal();
         String url = t.text("Link: ", "");
@@ -41,13 +33,17 @@ public class FileHandler {
             /**
              * Download, move and name target file
              */
+            Logger.info("Herunterladen...");
             InputStream in = new URL(url).openStream();
             Files.copy(in, Paths.get(this.storage.getAbsolutePath() + File.separator + name + ".openquiz"), StandardCopyOption.REPLACE_EXISTING);
+            Logger.info("Download fertig!");
 
         } catch(MalformedURLException e) {
             Logger.error("Die angegebene URL ist nicht valide!");
         } catch(IOException e) {
             Logger.error("Fehler beim Zugriff auf das Dateisystem");
+        } finally {
+            t.pauseEnter("");
         }
     }
 
@@ -57,10 +53,13 @@ public class FileHandler {
         String name = t.text("Speichern als: ", "Quizname");
         try {
             Files.copy(Paths.get(path), Paths.get(this.storage.getAbsolutePath() + File.separator + name + ".openquiz"), StandardCopyOption.REPLACE_EXISTING);
+            t.pauseEnter("Datei erfolgreich importiert");
         } catch(MalformedURLException e) {
             Logger.error("Die angegebene URL ist nicht valide!");
         } catch(IOException e) {
             Logger.error("Fehler beim Zugriff auf das Dateisystem");
+        } finally {
+            t.pauseEnter("");
         }
     }
 }

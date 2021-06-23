@@ -3,12 +3,9 @@ package eu.mhsl.openquiz.out;
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
 import eu.mhsl.openquiz.question.Question;
-import eu.mhsl.openquiz.screen.Screen;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.NumberFormat;
-import java.util.*;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Terminal {
     private final Scanner scanner = new Scanner(System.in);
@@ -137,7 +134,7 @@ public class Terminal {
      * @return true if the Question was answered correctly
      */
     public boolean quizQuestion(Question quest, int index, int player) {
-        clearScreen();
+        //clearScreen();
         TreeMap<Integer, String> items = new TreeMap<>();
         System.out.println(Ansi.colorize("Spieler: " + player + " Frage: " + index, Attribute.BOLD()));
 
@@ -148,7 +145,16 @@ public class Terminal {
         }
         int answer = this.choice(quest.getQuestion(), items, true);
 
-        return answer != quest.getSolution();
+        return answer == (quest.getSolution()+1);
+    }
+
+    public void pauseEnter(String message) {
+        System.out.println(Ansi.colorize(message, Attribute.GREEN_TEXT()));
+        System.out.println("Drücke [Enter] um fortzufahren...");
+        try {
+            System.in.read();
+        }
+        catch(Exception e) {}
     }
 
 }

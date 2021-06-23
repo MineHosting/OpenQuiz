@@ -4,7 +4,6 @@ import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.question.Question;
 import eu.mhsl.openquiz.question.QuestionSet;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -20,7 +19,7 @@ public class Hotseat {
 
     private int pointer = 0;
     private final TreeMap<Integer, TreeMap<Integer, Question>> playset = new TreeMap<>();
-    private HashMap<Integer, Integer> playerpoints = new HashMap<>();
+    private final HashMap<Integer, Integer> playerpoints = new HashMap<>();
 
     /**
      * Create an Game-Procedure managing different Players and Questions
@@ -104,11 +103,19 @@ public class Hotseat {
     }
 
     /**
+     * Get the position of the Pointer
+     * @return position
+     */
+    public int getPointer() {
+        return this.pointer;
+    }
+
+    /**
      * Get the current Question
      * @return Question
      */
     public Question getQuestion() {
-        return (Question) this.playset.get(this.pointer).values().toArray(new Question[0])[0];
+        return this.playset.get(this.pointer).values().toArray(new Question[0])[0];
     }
 
     /**
@@ -116,21 +123,15 @@ public class Hotseat {
      * @return player number
      */
     public int getPlayer() {
-        return (int) this.playset.get(this.pointer).keySet().toArray(new Integer[0])[0];
+        return this.playset.get(this.pointer).keySet().toArray(new Integer[0])[0];
     }
 
     /**
      * Add an Point to the current Player
      */
     public void addPoint() {
-        this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()).intValue() + 1);
-    }
-
-    /**
-     * Remove an Point from te current Player
-     */
-    public void removePoint() {
-        this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()).intValue() - 1);
+        Logger.info(this.playerpoints.toString());
+        this.playerpoints.put(this.getPlayer(), this.playerpoints.get(this.getPlayer()) + 1);
     }
 
     /**

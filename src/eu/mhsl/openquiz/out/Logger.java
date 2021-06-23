@@ -15,6 +15,6 @@ public class Logger {
         System.out.println("[" + Ansi.colorize("ERROR", Attribute.RED_TEXT()) + "] " + text);
     }
     public static void info(String text) {
-        System.out.println("[" + Ansi.colorize("INFO", Attribute.WHITE_TEXT()) + "] " + text);
+        System.out.println("[" + Ansi.colorize("INFO", Attribute.GREEN_TEXT()) + "] " + text);
     }
 }
