@@ -1,12 +1,11 @@
 package eu.mhsl.openquiz;
 
-import com.sun.jna.platform.mac.MacFileUtils;
 import eu.mhsl.openquiz.io.FileHandler;
 import eu.mhsl.openquiz.out.Terminal;
 import eu.mhsl.openquiz.screen.ScreenOpening;
 import eu.mhsl.openquiz.state.StateManager;
 
-public class Main {
+public class OpenQuiz {
     private static Terminal terminal;
     private static StateManager stateManager;
     private static FileHandler files;

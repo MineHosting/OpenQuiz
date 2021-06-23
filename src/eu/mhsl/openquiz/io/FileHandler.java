@@ -1,6 +1,6 @@
 package eu.mhsl.openquiz.io;
 
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.out.Terminal;
 
@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class FileHandler {
-    private File storage;
+    private final File storage;
     public FileHandler() {
         this.storage = new File(System.getProperty("user.dir") + File.separator + "data");
         if(storage.mkdirs()) Logger.warn("Created 'data' directory");
@@ -25,7 +25,7 @@ public class FileHandler {
     }
 
     public void importServer() {
-        Terminal t = Main.getTerminal();
+        Terminal t = OpenQuiz.getTerminal();
         t.text("Serverip: ", "127.0.0.1");
         t.number("Serverport: ", 8099);
 
@@ -33,7 +33,7 @@ public class FileHandler {
     }
 
     public void importHTTP() {
-        Terminal t = Main.getTerminal();
+        Terminal t = OpenQuiz.getTerminal();
         String url = t.text("Link: ", "");
         String name = t.text("Speichern als: ", "Quizname");
         try {
@@ -52,7 +52,7 @@ public class FileHandler {
     }
 
     public void importFile() {
-        Terminal t = Main.getTerminal();
+        Terminal t = OpenQuiz.getTerminal();
         String path = t.text("File: ", "Absolut");
         String name = t.text("Speichern als: ", "Quizname");
         try {

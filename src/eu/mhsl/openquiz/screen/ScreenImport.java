@@ -1,6 +1,6 @@
 package eu.mhsl.openquiz.screen;
 
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 
 import java.util.TreeMap;
 
@@ -16,16 +16,16 @@ public class ScreenImport implements Screen {
         items.put(4, "File");
     }
     public Screen display() {
-        int command = Main.getTerminal().choice("Importieren von", items);
+        int command = OpenQuiz.getTerminal().choice("Importieren von", items);
         switch (command) {
             case 2:
-                Main.getFileHandler().importServer();
+                OpenQuiz.getFileHandler().importServer();
                 break;
             case 3:
-                Main.getFileHandler().importHTTP();
+                OpenQuiz.getFileHandler().importHTTP();
                 break;
             case 4:
-                Main.getFileHandler().importFile();
+                OpenQuiz.getFileHandler().importFile();
                 break;
             default:
                 return null;

@@ -1,6 +1,6 @@
 package eu.mhsl.openquiz.screen;
 
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 
 import java.util.TreeMap;
 
@@ -18,7 +18,7 @@ public class ScreenOpening implements Screen {
     }
 
     public Screen display() {
-        int command = Main.getTerminal().choice("OpenQuiz", items);
+        int command = OpenQuiz.getTerminal().choice("OpenQuiz", items);
         switch (command) {
             case 1:
                 return new ScreenQuizList();

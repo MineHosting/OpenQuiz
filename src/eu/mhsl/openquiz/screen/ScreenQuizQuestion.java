@@ -1,6 +1,6 @@
 package eu.mhsl.openquiz.screen;
 
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 import eu.mhsl.openquiz.state.Hotseat;
 
 /**
@@ -14,7 +14,7 @@ public class ScreenQuizQuestion implements Screen {
     }
 
     public Screen display() {
-        boolean correct = Main.getTerminal().quizQuestion(hotseat.getQuestion(), 1, hotseat.getPlayer());
+        boolean correct = OpenQuiz.getTerminal().quizQuestion(hotseat.getQuestion(), 1, hotseat.getPlayer());
 
         if(correct)
             hotseat.addPoint();

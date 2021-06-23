@@ -2,7 +2,7 @@ package eu.mhsl.openquiz.screen;
 
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 import eu.mhsl.openquiz.out.Terminal;
 import eu.mhsl.openquiz.state.Hotseat;
 
@@ -16,7 +16,7 @@ public class ScreenQuizResult implements Screen {
     public Screen display() {
         HashMap<Integer, Integer> points = this.configuration.getPoints();
 
-        Terminal terminal = Main.getTerminal();
+        Terminal terminal = OpenQuiz.getTerminal();
         terminal.clearScreen();
         System.out.println(Ansi.colorize("Spielergebnis:", Attribute.GREEN_TEXT()));
         if(configuration.getPlayercount() > 1) {

@@ -2,7 +2,7 @@ package eu.mhsl.openquiz.screen;
 
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
-import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.OpenQuiz;
 import eu.mhsl.openquiz.question.QuestionSet;
 
 import java.io.File;
@@ -20,7 +20,7 @@ public class ScreenQuizList implements Screen {
     public ScreenQuizList() {
         items.put(1, "Zurück");
 
-        File[] files = Main.getFileHandler().getFiles();
+        File[] files = OpenQuiz.getFileHandler().getFiles();
         if(files != null) Arrays.sort(files, Comparator.comparingLong(File::lastModified));       //sort files by creation Date
 
         int c = 1;
@@ -36,7 +36,7 @@ public class ScreenQuizList implements Screen {
         }
     }
     public Screen display() {
-        int command = Main.getTerminal().choice("Wähle ein Quiz", items);
+        int command = OpenQuiz.getTerminal().choice("Wähle ein Quiz", items);
         switch (command) {
             case 1:
                 return new ScreenOpening();
