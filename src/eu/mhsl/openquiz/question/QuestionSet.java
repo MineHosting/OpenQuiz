@@ -1,8 +1,14 @@
 package eu.mhsl.openquiz.question;
 
+import eu.mhsl.openquiz.out.Logger;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InvalidPropertiesFormatException;
 import java.util.Random;
 
 public class QuestionSet {
@@ -27,14 +33,44 @@ public class QuestionSet {
      * @param file an File containing the openquiz format
      */
     public QuestionSet(File file) {
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            ArrayList<String[]> items = new ArrayList<>();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("#")) continue;
+                items.add(line.split(";"));
+            }
+
+
+            this.title = items.get(0)[0];
+            this.description = items.get(0)[1];
+            this.difficulty = QuizDifficulty.valueOf(items.get(0)[2]);
+
+            for(int q = 1; q < items.size(); q++) {
+                String[] current = items.get(q);
+                String[] rawquests = new String[current.length-2];
+
+                for(int j = 0; j < current.length-2; j++){
+                    rawquests[j] = current[j+2];
+                }
+
+                Logger.warn("-");
+
+                questions.add(new Question(current[0], rawquests, Integer.parseInt(current[1])));
+            }
+
+        } catch(Exception e) {
+            Logger.error("Error while reading quiz, check for correct Syntax!");
+            Logger.error("Failed to parse file " + file.getAbsolutePath());
+            throw new RuntimeException();
+        }
+
+
         //TODO: create Questionlist from File
 
-        this.title = "Betriebsysteme";
-        this.description = "Wie kennst du dich in der Welt der Betriebsysteme aus?";
-        this.difficulty = QuizDifficulty.EASY;
-
-        questions.add(new Question("Windows", "Wer hat Windows erfunden?", new String[] {"Linus Torvalds", "Bill Gates", "Henry Mickenbecker"}, 1));
-        questions.add(new Question("Linux", "Wer hat Linux erfunden", new String[] {"Bill Gates", "David Maul", "Linux Torvalds"}, 2));
 
         this.length = questions.size();
     }

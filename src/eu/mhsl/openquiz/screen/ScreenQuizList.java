@@ -20,8 +20,7 @@ public class ScreenQuizList implements Screen {
     public ScreenQuizList() {
         items.put(1, "Zurück");
 
-        File storage = new File(System.getProperty("user.dir") + File.separator + "data");
-        File[] files = storage.listFiles();
+        File[] files = Main.getFileHandler().getFiles();
         if(files != null) Arrays.sort(files, Comparator.comparingLong(File::lastModified));       //sort files by creation Date
 
         int c = 1;
@@ -43,7 +42,7 @@ public class ScreenQuizList implements Screen {
                 return new ScreenOpening();
             default:
                 if(!filemap.containsKey(command-1)) break;
-                return new ScreenQuizStart(new QuestionSet(filemap.get(command)));
+                return new ScreenQuizStart(new QuestionSet(filemap.get(command-1)));
         }
 
         return null;

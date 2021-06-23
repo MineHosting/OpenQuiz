@@ -1,6 +1,7 @@
 package eu.mhsl.openquiz.screen;
 
 import eu.mhsl.openquiz.Main;
+import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.state.Hotseat;
 
 /**
