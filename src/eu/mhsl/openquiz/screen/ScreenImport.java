@@ -18,10 +18,19 @@ public class ScreenImport implements Screen {
     public Screen display() {
         int command = Main.getTerminal().choice("Importieren von", items);
         switch (command) {
-            case 1:
-                return new ScreenOpening();
+            case 2:
+                Main.getFileHandler().importServer();
+                break;
+            case 3:
+                Main.getFileHandler().importHTTP();
+                break;
+            case 4:
+                Main.getFileHandler().importFile();
+                break;
             default:
                 return null;
         }
+
+        return new ScreenOpening();
     }
 }

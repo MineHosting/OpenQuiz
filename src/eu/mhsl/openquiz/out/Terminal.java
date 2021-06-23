@@ -102,15 +102,31 @@ public class Terminal {
      * @return the given number
      */
     public int number(String question, int prefered) {
-        scanner.nextLine();
         free();
         System.out.println(question);
         System.out.print("[" + prefered + "]: ");
-        String input = scanner.nextLine();
+        String input = scanner.next();
         if(input.equals("")) {
             return prefered;
         }
         return Integer.parseInt(input);
+    }
+
+    /**
+     * Asks user for an String-input
+     * @param question displayed question
+     * @param prefered prefered standart input
+     * @return the given text
+     */
+    public String text(String question, String prefered) {
+        free();
+        System.out.println(question);
+        System.out.print("[" + prefered + "]: ");
+        String input = scanner.next();
+        if(input.equals("")) {
+            return prefered;
+        }
+        return input;
     }
 
     /**
