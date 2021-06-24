@@ -70,7 +70,7 @@ public class Terminal {
         do {
             System.out.print(Ansi.colorize("Auswahl ", Attribute.CYAN_TEXT()) + Ansi.colorize("> ", Attribute.BOLD()));
             try {
-                selected = Integer.parseInt(scanner.next());
+                selected = Integer.parseInt(scanner.nextLine());
             } catch(NumberFormatException e) {
                 selected = -1;
             }
@@ -88,7 +88,7 @@ public class Terminal {
         free();
         System.out.println(question);
         System.out.print("[y/N] > ");
-        char selected = scanner.next().toLowerCase().toCharArray()[0];
+        char selected = scanner.nextLine().toLowerCase().toCharArray()[0];
         return selected == 'y';
     }
 
@@ -103,7 +103,7 @@ public class Terminal {
         System.out.print("> ");
 
         try {
-            return Integer.parseInt(scanner.next());
+            return Integer.parseInt(scanner.nextLine());
         } catch(Exception e) {
             return 0;
         }
@@ -119,7 +119,7 @@ public class Terminal {
         free();
         System.out.println(question);
         System.out.print("> ");
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     /**

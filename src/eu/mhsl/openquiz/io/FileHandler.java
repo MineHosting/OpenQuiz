@@ -3,10 +3,10 @@ package eu.mhsl.openquiz.io;
 import eu.mhsl.openquiz.OpenQuiz;
 import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.out.Terminal;
+import eu.mhsl.openquiz.question.Question;
+import eu.mhsl.openquiz.question.QuestionSet;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -60,6 +60,36 @@ public class FileHandler {
             Logger.error("Fehler beim Zugriff auf das Dateisystem");
         } finally {
             t.pauseEnter("");
+        }
+    }
+
+    public void importQuestionSet(QuestionSet quests) {
+        Terminal t = OpenQuiz.getTerminal();
+        String name = t.text("Speichern als: ");
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(this.storage.getAbsolutePath() + File.separator + name + ".openquiz"));
+            writer.write(quests.getTitle() + ";" + quests.getDescription() + ";" + quests.getDifficulty().toString());
+            writer.newLine();
+
+            // Fragen aus quests auslesen und in die Datei einfügen!
+
+            for(int i = 0; i < quests.length; i++) {
+                Question current = quests.get(i);
+                String out = current.getQuestion() + ";" + current.getSolution();
+                for(String answer : current.getAnswers()) {
+                    out += (";" + answer);
+                }
+                writer.write(out);
+                writer.newLine();
+            }
+
+            writer.flush();
+            writer.close();
+
+            Logger.info("Datei erfolgreich geschrieben!");
+        } catch(Exception e) {
+            Logger.error("Fehler beim schreiben der Datei!");
         }
     }
 }

@@ -23,8 +23,6 @@ public class ScreenImport implements Screen {
             case 3:
                 OpenQuiz.getFileHandler().importFile();
                 break;
-            default:
-                return null;
         }
 
         return new ScreenOpening();

@@ -5,27 +5,26 @@ import eu.mhsl.openquiz.out.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InvalidPropertiesFormatException;
 import java.util.Random;
 
 public class QuestionSet {
-    private ArrayList<Question> questions = new ArrayList<>();
+    private final ArrayList<Question> questions = new ArrayList<>();
 
-    private String title;
-    private String description;
-    private QuizDifficulty difficulty;
+    private final String title;
+    private final String description;
+    private final QuizDifficulty difficulty;
 
     public int length;
 
     /**
-     * Construct an QuestionList from an ArrayList
-     * @param quests Arraylist of predefined questions
+     * Create an empty QuestionList
      */
-    public QuestionSet(ArrayList<Question> quests) {
-        this.questions = quests;
+    public QuestionSet(String title, String description, QuizDifficulty difficulty) {
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
     }
 
     /**
@@ -68,11 +67,11 @@ public class QuestionSet {
             throw new RuntimeException();
         }
 
-
-        //TODO: create Questionlist from File
-
-
         this.length = questions.size();
+    }
+
+    public void add(Question quest) {
+        questions.add(quest);
     }
 
     /**
