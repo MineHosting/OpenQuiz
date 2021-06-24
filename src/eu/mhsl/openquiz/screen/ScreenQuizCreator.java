@@ -8,6 +8,9 @@ import eu.mhsl.openquiz.question.QuizDifficulty;
 
 import java.util.ArrayList;
 
+/**
+ * Implements the Create-menu for creating own Quizzes
+ */
 public class ScreenQuizCreator implements Screen {
 
     public Screen display() {
@@ -23,7 +26,7 @@ public class ScreenQuizCreator implements Screen {
          */
         do {
 
-            String quest = t.text("Frage:");
+            String quest = t.text("Frage hinzufügen:");
 
             /*
             Create answers...
@@ -31,11 +34,11 @@ public class ScreenQuizCreator implements Screen {
             ArrayList<String> answerlist = new ArrayList<String>();
             do {
 
-                answerlist.add(t.text("Antwort:"));
+                answerlist.add(t.text("Antwortmöglichkeit hinzufügen:"));
 
             } while(t.bool("Weitere Antwortmöglichkeit hinzufügen?"));
 
-            Question question = new Question(quest, answerlist.toArray(new String[0]), t.number("Welche antwort war die richtige? (von 0 beginnend)"));
+            Question question = new Question(quest, answerlist.toArray(new String[0]), t.number("Welche Antwort war die Richtige? (von 0 beginnend)"));
             custom.add(question);
 
         } while(t.bool("Möchtest du eine weitere Frage hinzufügen?"));

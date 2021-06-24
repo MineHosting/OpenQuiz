@@ -1,5 +1,8 @@
 package eu.mhsl.openquiz.question;
 
+/**
+ * This class represents one Question with all it attributes
+ */
 public class Question {
     private final String question;
     private final String[] answers;

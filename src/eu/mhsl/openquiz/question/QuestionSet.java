@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+
+/**
+ * This class represents an Set of Questions, the Set can be created manually or from an File with the openquiz Standart
+ */
 public class QuestionSet {
     private final ArrayList<Question> questions = new ArrayList<>();
 
@@ -70,6 +74,10 @@ public class QuestionSet {
         this.length = questions.size();
     }
 
+    /**
+     * Append an Question to the internal Question List
+     * @param quest the Question to append
+     */
     public void add(Question quest) {
         questions.add(quest);
     }

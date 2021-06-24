@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Filehandler is an basic IO class which handles files
+ */
 public class FileHandler {
     private final File storage;
     public FileHandler() {
@@ -24,6 +27,9 @@ public class FileHandler {
         return storage.listFiles();
     }
 
+    /**
+     * Imports openquizfile via HTTP-Link
+     */
     public void importHTTP() {
         Terminal t = OpenQuiz.getTerminal();
         String url = t.text("Link: ");
@@ -47,6 +53,9 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Copys openquiz file to the internal directory
+     */
     public void importFile() {
         Terminal t = OpenQuiz.getTerminal();
         String path = t.text("File: ");
@@ -63,6 +72,10 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Writes an QuestionSet as an File
+     * @param quests the used QuestionSet
+     */
     public void importQuestionSet(QuestionSet quests) {
         Terminal t = OpenQuiz.getTerminal();
         String name = t.text("Speichern als: ");

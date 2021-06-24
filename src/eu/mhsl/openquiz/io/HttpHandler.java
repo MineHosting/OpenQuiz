@@ -13,6 +13,11 @@ public class HttpHandler implements com.sun.net.httpserver.HttpHandler {
         this.response = response;
     }
 
+    /**
+     * Is called when an User sends an HTTP-Request to the Internal Server
+     * @param he the Http-Info Obj
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange he) throws IOException {
         Logger.info("Handles " + he.getRequestMethod() + " request from " + he.getRemoteAddress().getHostString() + " (" + he.getProtocol() + ")");

@@ -7,6 +7,9 @@ import eu.mhsl.openquiz.question.Question;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+/**
+ * Terminal is an simplification tool to simplyfy acces to Terminal and get Userinputs
+ */
 public class Terminal {
     private final Scanner scanner = new Scanner(System.in);
 

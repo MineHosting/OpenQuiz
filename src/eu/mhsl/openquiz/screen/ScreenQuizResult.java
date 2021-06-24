@@ -8,6 +8,9 @@ import eu.mhsl.openquiz.state.Hotseat;
 
 import java.util.HashMap;
 
+/**
+ * This Screen displays the summary of an Quiz-Game and displays all Points of each User
+ */
 public class ScreenQuizResult implements Screen {
     Hotseat configuration;
     public ScreenQuizResult(Hotseat hs) {
