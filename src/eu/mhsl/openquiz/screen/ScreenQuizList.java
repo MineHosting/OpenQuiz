@@ -3,6 +3,7 @@ package eu.mhsl.openquiz.screen;
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
 import eu.mhsl.openquiz.OpenQuiz;
+import eu.mhsl.openquiz.out.Logger;
 import eu.mhsl.openquiz.question.QuestionSet;
 
 import java.io.File;
@@ -42,7 +43,13 @@ public class ScreenQuizList implements Screen {
                 return new ScreenOpening();
             default:
                 if(!filemap.containsKey(command-1)) break;
-                return new ScreenQuizStart(new QuestionSet(filemap.get(command-1)));
+                try {
+                    return new ScreenQuizStart(new QuestionSet(filemap.get(command-1)));
+                } catch(Exception e) {
+                    Logger.error("Fehler beim einlesen oder Starten des Quizzes: " + e.getMessage());
+                    OpenQuiz.getTerminal().pauseEnter("");
+                    return new ScreenQuizList();
+                }
         }
 
         return null;

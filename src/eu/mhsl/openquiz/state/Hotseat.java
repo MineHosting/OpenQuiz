@@ -40,6 +40,14 @@ public class Hotseat {
 
         //generate playmap
         //brainfuck
+        /**
+         * okay, I have no idea how I wrote this part. But i've wrote it and it Works
+         * Don't touch ;)
+         *
+         * it creates the playmap with the given parameters
+         *
+         * Start
+         */
         int questindex;
         int runindex = 0;
         if(playercount > 1 && questioncount > 1) {
@@ -74,6 +82,9 @@ public class Hotseat {
             }
 
         }
+        /**
+         * End of suspicious code
+         */
 
     }
 
