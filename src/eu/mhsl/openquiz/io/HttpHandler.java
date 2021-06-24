@@ -8,7 +8,7 @@ import java.io.OutputStream;
 
 public class HttpHandler implements com.sun.net.httpserver.HttpHandler {
 
-    String response;
+    final String response;
     public HttpHandler(String response) {
         this.response = response;
     }
@@ -16,7 +16,6 @@ public class HttpHandler implements com.sun.net.httpserver.HttpHandler {
     /**
      * Is called when an User sends an HTTP-Request to the Internal Server
      * @param he the Http-Info Obj
-     * @throws IOException
      */
     @Override
     public void handle(HttpExchange he) throws IOException {

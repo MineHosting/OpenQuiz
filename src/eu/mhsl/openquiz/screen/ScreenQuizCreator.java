@@ -31,7 +31,7 @@ public class ScreenQuizCreator implements Screen {
             /*
             Create answers...
              */
-            ArrayList<String> answerlist = new ArrayList<String>();
+            ArrayList<String> answerlist = new ArrayList<>();
             do {
 
                 answerlist.add(t.text("Antwortmöglichkeit hinzufügen:"));

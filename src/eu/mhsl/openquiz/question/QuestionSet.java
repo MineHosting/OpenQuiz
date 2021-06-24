@@ -56,9 +56,7 @@ public class QuestionSet {
                 String[] current = items.get(q);
                 String[] rawquests = new String[current.length-2];
 
-                for(int j = 0; j < current.length-2; j++){
-                    rawquests[j] = current[j+2];
-                }
+                System.arraycopy(current, 2, rawquests, 0, current.length - 2);
 
                 Logger.warn("-");
 

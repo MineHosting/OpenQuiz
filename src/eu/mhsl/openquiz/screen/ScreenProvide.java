@@ -12,6 +12,7 @@ import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -24,7 +25,7 @@ import java.util.TreeMap;
  * TODO: Change the ScreenQuizList to an open Return format and use it here, instead of copying code
  */
 public class ScreenProvide implements Screen {
-    public TreeMap<Integer, String> items = new TreeMap<>();
+    public final TreeMap<Integer, String> items = new TreeMap<>();
     private final TreeMap<Integer, File> filemap = new TreeMap<>();
 
     public ScreenProvide() {
@@ -34,7 +35,7 @@ public class ScreenProvide implements Screen {
         if(files != null) Arrays.sort(files, Comparator.comparingLong(File::lastModified));       //sort files by creation Date
 
         int c = 1;
-        for(File file : files) {
+        for(File file : Objects.requireNonNull(files)) {
             if(!file.isFile()) continue;                                        //skipping folders
             if(!file.getName().endsWith(".openquiz")) continue;                 //skip not correct fileendings
             if(!file.canRead()) continue;                                       //skip non-readable files
@@ -47,27 +48,25 @@ public class ScreenProvide implements Screen {
     }
     public Screen display() {
         int command = OpenQuiz.getTerminal().choice("Wähle ein Quiz", items);
-        switch (command) {
-            case 1:
-                return new ScreenOpening();
-            default:
-                if(!filemap.containsKey(command-1)) break;
+        if (command == 1) {
+            return new ScreenOpening();
+        } else {
+            if (!filemap.containsKey(command - 1)) return null;
 
-                try {
-                    String content = "";
-                    for(String line : Files.readAllLines(filemap.get(command-1).toPath())) {
-                        content += line + "\n";
-                    }
-
-                    HttpServer server = HttpServer.create(new InetSocketAddress(OpenQuiz.getTerminal().number("auf welchem Port soll der Server gestartet werden?")), 0);
-                    server.createContext("/", new HttpHandler(content));
-                    server.setExecutor(null);
-                    server.start();
-                    Logger.info("Server is running!");
-                } catch(Exception e) {
-                    Logger.error("Error while running Webserver or starting it: " + e.getMessage());
+            try {
+                StringBuilder content = new StringBuilder();
+                for (String line : Files.readAllLines(filemap.get(command - 1).toPath())) {
+                    content.append(line).append("\n");
                 }
 
+                HttpServer server = HttpServer.create(new InetSocketAddress(OpenQuiz.getTerminal().number("auf welchem Port soll der Server gestartet werden?")), 0);
+                server.createContext("/", new HttpHandler(content.toString()));
+                server.setExecutor(null);
+                server.start();
+                Logger.info("Server is running!");
+            } catch (Exception e) {
+                Logger.error("Error while running Webserver or starting it: " + e.getMessage());
+            }
         }
 
         return null;

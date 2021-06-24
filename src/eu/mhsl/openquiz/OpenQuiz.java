@@ -12,14 +12,13 @@ import eu.mhsl.openquiz.state.StateManager;
  */
 public class OpenQuiz {
     private static Terminal terminal;
-    private static StateManager stateManager;
     private static FileHandler files;
 
     public static void main(String[] args) {
         //creating often used Instances of classes
         terminal = new Terminal();
         files = new FileHandler();
-        stateManager = new StateManager();
+        StateManager stateManager = new StateManager();
 
         stateManager.setScreen(new ScreenOpening()); //Start starting Screen
 
@@ -29,9 +28,7 @@ public class OpenQuiz {
     public static Terminal getTerminal() {
         return terminal;
     }
-    public static StateManager getStateManager() {
-        return stateManager;
-    }
+
     public static FileHandler getFileHandler() {
         return files;
     }

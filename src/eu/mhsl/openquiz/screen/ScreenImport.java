@@ -8,7 +8,7 @@ import java.util.TreeMap;
  * Implements the Import-Option menu
  */
 public class ScreenImport implements Screen {
-    public TreeMap<Integer, String> items = new TreeMap<>();
+    public final TreeMap<Integer, String> items = new TreeMap<>();
     public ScreenImport() {
         items.put(1, "Zurück");
         items.put(2, "Server");

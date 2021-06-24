@@ -12,7 +12,7 @@ import java.util.HashMap;
  * This Screen displays the summary of an Quiz-Game and displays all Points of each User
  */
 public class ScreenQuizResult implements Screen {
-    Hotseat configuration;
+    final Hotseat configuration;
     public ScreenQuizResult(Hotseat hs) {
         this.configuration = hs;
     }

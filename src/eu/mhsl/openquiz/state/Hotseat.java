@@ -12,9 +12,9 @@ import java.util.TreeMap;
  * The procedure is once generated in the constructor.
  */
 public class Hotseat {
-    protected int playercount;
-    protected int questioncount;
-    protected QuestionSet questions;
+    protected final int playercount;
+    protected final int questioncount;
+    protected final QuestionSet questions;
 
     private int pointer = 0;
     private final TreeMap<Integer, TreeMap<Integer, Question>> playset = new TreeMap<>();
@@ -27,7 +27,7 @@ public class Hotseat {
      *                      So you don't have to switch every Question
      * @param questions Questionset of target questions
      */
-    public Hotseat(int playercount, int questioncount, QuestionSet questions) throws Exception {
+    public Hotseat(int playercount, int questioncount, QuestionSet questions) {
         this.playercount = playercount;
         this.questioncount = questioncount;
         this.questions = questions;
@@ -40,13 +40,13 @@ public class Hotseat {
 
         //generate playmap
         //brainfuck
-        /**
-         * okay, I have no idea how I wrote this part. But i've wrote it and it Works
-         * Don't touch ;)
-         *
-         * it creates the playmap with the given parameters
-         *
-         * Start
+        /*
+          okay, I have no idea how I wrote this part. But i've wrote it and it Works
+          Don't touch ;)
+
+          it creates the playmap with the given parameters
+
+          Start
          */
         int questindex;
         int runindex = 0;
@@ -82,8 +82,8 @@ public class Hotseat {
             }
 
         }
-        /**
-         * End of suspicious code
+        /*
+          End of suspicious code
          */
 
     }
@@ -108,7 +108,7 @@ public class Hotseat {
      * Get the Map from the current pointer
      * @return the Map containing the current Player and the Question
      */
-    public TreeMap get() {
+    public TreeMap<Integer, Question> get() {
         return this.playset.get(this.pointer);
     }
 

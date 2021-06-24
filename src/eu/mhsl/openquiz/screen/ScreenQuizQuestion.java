@@ -13,7 +13,7 @@ public class ScreenQuizQuestion implements Screen {
         this.hotseat = hotseat;
     }
 
-    public Screen display() throws Exception {
+    public Screen display() {
         boolean correct = OpenQuiz.getTerminal().quizQuestion(hotseat.getQuestion(), hotseat.getPointer(), hotseat.getPlayer());
 
         if(correct) hotseat.addPoint();

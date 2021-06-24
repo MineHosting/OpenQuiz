@@ -36,8 +36,8 @@ public class FileHandler {
         String name = t.text("Speichern als: ");
         try {
 
-            /**
-             * Download, move and name target file
+            /*
+              Download, move and name target file
              */
             Logger.info("Herunterladen...");
             InputStream in = new URL(url).openStream();
@@ -89,11 +89,11 @@ public class FileHandler {
 
             for(int i = 0; i < quests.length; i++) {
                 Question current = quests.get(i);
-                String out = current.getQuestion() + ";" + current.getSolution();
+                StringBuilder out = new StringBuilder(current.getQuestion() + ";" + current.getSolution());
                 for(String answer : current.getAnswers()) {
-                    out += (";" + answer);
+                    out.append(";").append(answer);
                 }
-                writer.write(out);
+                writer.write(out.toString());
                 writer.newLine();
             }
 

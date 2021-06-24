@@ -44,9 +44,6 @@ public class Terminal {
 
     /**
      * Helper for choice
-     * @param question
-     * @param map
-     * @return
      */
     public int choice(String question, TreeMap<Integer, String> map) {
         return this.choice(question, map, false);
@@ -61,12 +58,11 @@ public class Terminal {
      */
     public int choice(String question, TreeMap<Integer, String> map, boolean noClear) {
         if(!noClear) clearScreen();
-        int answer = 0;
         int selected;
         free();
         System.out.println(Ansi.colorize(question, Attribute.BRIGHT_RED_TEXT()));
         free();
-        for(int index : map.keySet().toArray(new Integer[map.size()])) {
+        for(int index : map.keySet().toArray(new Integer[0])) {
             System.out.println(Ansi.colorize("" + index, Attribute.BOLD()) + " - " + map.get(index));
         }
         free();
@@ -157,7 +153,7 @@ public class Terminal {
         try {
             System.in.read();
         }
-        catch(Exception e) {}
+        catch(Exception ignored) {}
     }
 
 }
