@@ -28,7 +28,7 @@ public class ScreenOpening implements Screen {
             case 3:
                 return new ScreenImport();
             case 4:
-                return null;
+                return new ScreenProvide();
             case 5:
                 Logger.info("Thanks for Playing <3");
             default:
