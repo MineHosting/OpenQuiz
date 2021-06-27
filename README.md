@@ -32,7 +32,7 @@
 
 You can [download](https://github.com/MineHosting/OpenQuiz/out) the latest executable of OpenQuiz for your Plattform
 
-###From Source
+### From Source
 
 To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer. From your command line:
 You can also use the Download-Option on Git.
